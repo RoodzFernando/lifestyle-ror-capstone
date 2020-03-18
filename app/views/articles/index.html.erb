@@ -16,6 +16,7 @@
     <% @articles.each do |article| %>
       <tr>
         <td><%= article.author_id %></td>
+        <td><%= image_tag(article.image, style: 'width:100%') %></td>
         <td><%= article.title %></td>
         <td><%= article.text %></td>
         <td><%= link_to 'Show', article %></td>
