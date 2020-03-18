@@ -6,7 +6,8 @@ class SessionsController < ApplicationController
     user = User.find_by(name: params[:session][:name].downcase)
 
     if user
-      redirect_to root_path
+      log_in user
+      redirect_to user
       flash[:success] = "Welcome #{user.name.capitalize}!"
     else
       flash.now[:danger] = 'Name is invalid.'
@@ -15,6 +16,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-
+    log_out
+    redirect_to root_path
   end
 end
