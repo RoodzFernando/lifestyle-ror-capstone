@@ -1,13 +1,14 @@
 module ArticlesHelper
     def category_name(val)
         @article = Article.find(val)
-        if @article.category.nil?
+        # @category = Category.find(1)
+        if @article.category_id.nil?
             "Undefined Category"
         else
-            @article.category.name
+            @category_id = @article.category_id
+            @category = Category.find_by(id: @category_id).name
         end
     end
-
     def category_all
         @categories = Category.all
     end

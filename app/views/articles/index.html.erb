@@ -17,7 +17,7 @@
     <% @articles.each do |article| %>
       <tr>
         <td><%= category_name(article.id) %></td>
-        <td><%= article.author_id %></td>
+        <td><%= article.user.name %></td>
         <td><%= image_tag(article.image, style: 'width:100%') %></td>
         <td><%= article.title %></td>
         <td><%= article.text %></td>

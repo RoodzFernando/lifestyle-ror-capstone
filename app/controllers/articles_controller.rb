@@ -15,7 +15,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
-    @article.build_category
+    # @article.build_category
   end
 
   # GET /articles/1/edit
@@ -25,9 +25,12 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
-    @article = current_user.articles.build(article_params)
-    # @article.author_id = params[:author_id]
-    # @article.user = current_user
+    @article = Article.new(article_params)
+    @article.author_id = params[:author_id]
+    @article.user = current_user
+    @category = Category.find_by(params[:name])
+    # debugger
+    @article.category_id = @category.id
       if @article.save
         redirect_to @article, notice: 'Article was successfully created.'
       else
@@ -60,6 +63,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :text, :image, categories_attribute: [:category])
+      params.require(:article).permit(:title, :text, :image, :category_id ,categories_attribute: [:name])
     end
 end
