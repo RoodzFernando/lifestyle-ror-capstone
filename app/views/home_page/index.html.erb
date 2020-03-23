@@ -1,4 +1,12 @@
 <h1>Homepage</h1>
 
 
+<% article_all.each do |article| %>
+    <ul>
+        <li><%= article.title %></li>
+        <li><%= article.text %></li>
+        <li><%= image_tag article.image if article.image.attached? %></li>
+
+    </ul>
+<% end %>
 
